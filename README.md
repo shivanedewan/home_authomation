@@ -1,10 +1,8 @@
-
-This _type of application_ was developed during HaXplore 2.0, 
-the online hackathon conducted by Codefest, the annual departmental fest of Computer Science department, IIT BHU Varanasi.
+Hello my name is Shivane dewan
+This application_ has been developed to participate in online hackathons, 
+I have also used this website in online hackathon for hackerearth
 
 ## _Talent-404_
-
-
 
 # _EZ2Home_
 #### Home Automation is Cool🤩! But it's Expansive🥲. 
