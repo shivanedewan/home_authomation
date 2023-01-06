@@ -1,0 +1,52 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<script>
+        document.getElementById('dropdownMenuLink').innerHTML = '{{Room}}'
+        function getRoom() {
+                return {{ Room.id }}
+        }
+</script>
+<div class="container grid mt-5">
+        <!-- Here we loop over the rooms which we can get from the database -->
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 justify-content-center">
+                {% for appliance in appliances %}
+                <div class="btn-group col-md col-10 mb-2" role="group">
+                        <button onclick="flip(this)" class="btn col-9 
+                    btn-{% if appliance.status %}success{% else %}secondary{% endif %}" data-pin={{appliance.pin_no}}
+                                data-pinStatus={{appliance.status}}>
+                                {{appliance.name}} ({{appliance.pin_no}})
+                        </button>
+
+                        <button id="btnGroupDrop1" type="button" class="btn col-3 btn-success dropdown-toggle"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <li><a class="dropdown-item" onclick="deletePin({{appliance.pin_no}})">Delete
+                                                Appliance</a></li>
+                        </ul>
+                </div>
+                {% endfor %}
+        </div>
+</div>
+<div class="fixed-bottom d-grid justify-content-end">
+        <!-- <button class="btn btn-primary ">Add Appliance</button> -->
+        <div class="dropup me-3 mb-3">
+                <button class="btn btn-primary dropdown-toggle rounded-pill" type="button" id="dropdownMenu2"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Add appliance
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <li>
+                                <form action="add/" class="p-3" method="POST"> {% csrf_token %}
+                                        <input name="applianceName" type="text" class="mb-2"
+                                                placeholder="Appliance Name">
+                                        <input name="appliancePin" type="text" class="mb-2" placeholder="Pin Number">
+                                        <button class="btn btn-outline-primary">Add</button>
+                                </form>
+                        </li>
+                </ul>
+        </div>
+</div>
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock content %}
